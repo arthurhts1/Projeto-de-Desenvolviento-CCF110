@@ -19,7 +19,7 @@ int main(){
     printf("2 - Comprar Ingressos\n");
     printf("3 - Sair\n");
     printf("\n");
-    printf("Comando: ");
+    printf(" Comando: ");
     scanf("%d", &opcao);
     printf("\n");
 
