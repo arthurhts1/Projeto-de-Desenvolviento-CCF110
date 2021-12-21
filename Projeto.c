@@ -7,9 +7,29 @@
 int main()
 {
     int time, op, setor, vendasetor1=0, vendasetor2=0, vendasetor3=0, vendasetor4=0;
-    int n=600, quant1[100]={0}, quant2[200]={0}, quant3[100]={0},quant4[200]={0};
+    int n=600, totalvendido=0, quant1[100]={0}, quant2[200]={0}, quant3[100]={0},quant4[200]={0};
+    int contTorcedor=0, idsTorcedor[n];
 
-        for (int i=0;i<n;i++){
+
+    int id;
+
+    //cadastro de cliente para compra
+    printf("Digite o ID: \n");
+    scanf("%d",&id);
+
+
+    while(id > 0 ){
+        idsTorcedor[contTorcedor] = id;
+
+        contTorcedor++;
+
+        printf("Digite o ID ou 0 para comprar ingresso: \n");
+        scanf("%d",&id);
+       // printf("Para sair digite 0 ");
+        //scanf("%d",&id);
+    }
+
+        for (int i=0;i<contTorcedor;i++){
 
             //menu inicial
             printf("******VENDA DE INGRESSOS******\n");
@@ -37,12 +57,12 @@ int main()
                         default:
                             printf("Setor invalido!\n");
                     }
-                break;
-                //escolha dos setores
+                    break;
                 case 2:
                     printf("\n[3] Setor inferior (R$100,00)\n[4] Setor superior (R$50,00)\n ");
                     printf("\nComando: ");
                     scanf("%d", &setor);
+                    //escolha dos setores
                     switch(setor){
                         case 3:
                             printf("\nDigite a quantidade de ingressos: ");
@@ -55,15 +75,20 @@ int main()
                         default:
                             printf("Setor invalido!\n");
                     }
-                break;
+                    break;
+                default:
+                    printf("Opcao invalida!\n");
             }
-        //controle de ingressos vendidos em cada setor
-        for (int i=0;i<10;i++){
+        //controle de ingressos vendidos em cada setor  ***
+        for (int i=0;i<contTorcedor;i++){
             vendasetor1 += quant1[i];
             vendasetor2 += quant2[i];
             vendasetor3 += quant3[i];
             vendasetor4 += quant4[i];
+            totalvendido = vendasetor1 + vendasetor2 + vendasetor3 + vendasetor4;
         }
+
+        n -= totalvendido;
 
         printf("\nDigite qualquer numero para continuar ou 0 para encerrar: ");
         scanf("%d", &op);
@@ -77,6 +102,11 @@ int main()
         printf("Ingressos vendidos setor 2: %d\n", vendasetor2);
         printf("Ingressos vendidos setor 3: %d\n", vendasetor3);
         printf("Ingressos vendidos setor 4: %d\n", vendasetor4);
+        printf("Total de ingressos vendidos: %d\n", totalvendido);
+        printf("Ingressos nao vendidos: %d", n);
+        printf("\n\n");
+        printf("Total de torcedores: %d",contTorcedor);
+        printf("\n\n");
 
     return 0;
 }
