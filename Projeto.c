@@ -6,120 +6,139 @@
 
 int main()
 {
-    int i,j,menu,time, op, setor, vendasetor1=0, vendasetor2=0, vendasetor3=0, vendasetor4=0;
-    int n=600, totalvendido=0, quant1[100]={0}, quant2[200]={0}, quant3[100]={0},quant4[200]={0},CAD[600][600];
-    int contTorcedor=0, idsTorcedor[n];
+    int i,j,k,l,id=1,op=1;
+    int setor,contTorcedor=0, vendasetor1=0, vendasetor2=0, vendasetor3=0, vendasetor4=0,n=2000, totalvendido=0;;
+    int setor1[20][40],setor2[10][20],setor3[20][40],setor4[10][20];
+    int *idsTorcedor;
 
 
-    int id;
+    idsTorcedor = malloc(contTorcedor * sizeof(int));
 
-    //cadastro de cliente para compra
-    printf("Digite o ID: \n");
-    scanf("%d",&id);
+    while(id > 0){
 
-
-    while(id > 0 ){
         idsTorcedor[contTorcedor] = id;
 
         contTorcedor++;
 
-        printf("Digite o ID ou 0 para comprar ingresso: \n");
+        printf("Digite o ID (Digite 0 para sair): ");
         scanf("%d",&id);
-        //printf("Para sair digite 0 ");
-        //scanf("%d",&id);
     }
 
     //Zera os valores das cadeiras
-    for(i=0;i<=30;i++){
-        for(j=0;j<=60;j++){
-            CAD[i][j]=0;
+    for (i=0;i<20;i++){
+        for (j=0;j<40;j++){
+            setor1[i][j] = 0;
+            setor2[i][j] = 0;
+        }
+    }
+    for (i=0;i<10;i++){
+        for (j=0;j<20;j++){
+            setor2[i][j] = 0;
+            setor4[i][j] = 0;
         }
     }
 
+    for (i=0;i<contTorcedor;i++){
 
-        for (int i=0;i<contTorcedor;i++){
+        //Menu
+        printf("******VENDA DE INGRESSOS******\n");
+        printf("Escolha o setor:\n");
+        printf("[1] Setor 1 (R$20,00) | [2] Setor 2 (R$10,00) | [3] Setor 3 (R$20,00) | [4] Setor 4 (R$10,00) ");
+        printf("\nComando: ");
+        scanf("%d", &setor);
 
-            //Menu
-            printf("******VENDA DE INGRESSOS******\n");
-            printf("[1] Ver assentos disponiveis");
-            printf("[2] Escolher time");
-            printf("\nComando: ");
-            scanf("%d", &menu);
+        //Escolha do Setor
+        switch(setor){
+            case 1:
+                printf("\n*****SETOR 1******\n\n");
+                while (op != 0){
 
-            switch(menu){
-                case 1:
-                    for(i=0;i<=30;i++){
-                        for(j=0;j<=60;j++){
-                            if(CAD[i][j]==1){
-                            printf("\nAssentos Ocupados: [%d][%d]", i, j);
-                            }
-                            else{
-                                printf("\nNenhum assento ocupado!\n");
-                            }
-                        }
-                    }
+                    printf("Digite o id: ");
+                    scanf("%d",&id);
 
+                    printf("Escolha a linha e a coluna do ingresso: \n");
+                    printf("Linha (0-20): ");
+                    scanf("%d",&i);
+                    printf("Coluna (0-40): ");
+                    scanf("%d",&j);
 
-                case 2:
-                    //submenu
-                    printf("******VENDA DE INGRESSOS******\n");
-                    printf("Escolha o seu time:\n[1] Time local \n[2] Time visitante");
-                    printf("\nComando: ");
-                    scanf("%d", &time);
+                    setor1[i][j] = id;
+                    vendasetor1++;
 
-                    //Escolha do time
-                    switch(time){
-                        case 1:
-                            printf("\n[1] Setor inferior (R$100,00)\n[2] Setor superior (R$50,00)\n");
-                            printf("Comando: ");
-                            scanf("%d", &setor);
+                    printf("[0] Para sair [1] Para comprar outro ingresso\n");
+                    printf("Comando: ");
+                    scanf("%d",&op);
+                }
+                break;
+            case 2:
+                printf("\n*****SETOR 2******\n\n");
+                while (op != 0){
 
-                            //escolha dos setores
-                            switch(setor){
-                                case 1:
-                                    printf("\nQuantos ingressos deseja comprar: ");
-                                    scanf("%d", &quant1[i]);
-                                    break;
-                                case 2:
-                                    printf("\nQuantos ingressos deseja comprar: ");
-                                    scanf("%d", &quant2[i]);
-                                    break;
-                                default:
-                                    printf("Setor invalido!\n");
-                            }
-                            break;
-                        case 2:
-                            printf("\n[3] Setor inferior (R$100,00)\n[4] Setor superior (R$50,00)\n ");
-                            printf("\nComando: ");
-                            scanf("%d", &setor);
-                            //escolha dos setores
-                            switch(setor){
-                                case 3:
-                                    printf("\nDigite a quantidade de ingressos: ");
-                                    scanf("%d", &quant3[i]);
-                                    break;
-                                case 4:
-                                    printf("\nDigite a quantidade de ingressos: ");
-                                    scanf("%d", &quant4[i]);
-                                    break;
-                                default:
-                                    printf("Setor invalido!\n");
-                            }
-                            break;
-                        default:
-                            printf("Opcao invalida!\n");
-                    }
-                    break;
-            }
-        //controle de ingressos vendidos em cada setor  ***
-        for (int i=0;i<contTorcedor;i++){
-            vendasetor1 += quant1[i];
-            vendasetor2 += quant2[i];
-            vendasetor3 += quant3[i];
-            vendasetor4 += quant4[i];
-            totalvendido = vendasetor1 + vendasetor2 + vendasetor3 + vendasetor4;
+                    printf("Digite o id: ");
+                    scanf("%d",&id);
+
+                    printf("Escolha a linha e a coluna do ingresso: \n");
+                    printf("Linha (0-20): ");
+                    scanf("%d",&i);
+                    printf("Coluna (0-40): ");
+                    scanf("%d",&j);
+
+                    setor2[i][j] = id;
+                    vendasetor2++;
+
+                    printf("[0] Para sair [1] Para comprar outro ingresso\n");
+                    printf("Comando: ");
+                    scanf("%d",&op);
+                }
+                break;
+            case 3:
+                printf("\n*****SETOR 3******\n\n");
+                while (op != 0){
+
+                    printf("Digite o id: ");
+                    scanf("%d",&id);
+
+                    printf("Escolha a linha e a coluna do ingresso: \n");
+                    printf("Linha (0-20): ");
+                    scanf("%d",&i);
+                    printf("Coluna (0-40): ");
+                    scanf("%d",&j);
+
+                    setor3[i][j] = id;
+                    vendasetor3++;
+
+                    printf("[0] Para sair [1] Para comprar outro ingresso\n");
+                    printf("Comando: ");
+                    scanf("%d",&op);
+                }
+                break;
+            case 4:
+                printf("\n*****SETOR 4******\n\n");
+                while (op != 0){
+
+                    printf("Digite o id: ");
+                    scanf("%d",&id);
+
+                    printf("Escolha a linha e a coluna do ingresso: \n");
+                    printf("Linha (0-20): ");
+                    scanf("%d",&i);
+                    printf("Coluna (0-40): ");
+                    scanf("%d",&j);
+
+                    setor4[i][j] = id;
+                    vendasetor4++;
+
+                    printf("[0] Para sair [1] Para comprar outro ingresso\n");
+                    printf("Comando: ");
+                    scanf("%d",&op);
+                }
+                break;
+            default:
+                printf("Setor invalido!\n");
         }
+        break;
 
+        totalvendido = vendasetor1 + vendasetor2 + vendasetor3 + vendasetor4;
         n -= totalvendido;
 
         printf("\nDigite qualquer numero para continuar ou 0 para encerrar: ");
@@ -128,17 +147,19 @@ int main()
         if (op==0){
             break;
         }
-        }
+    }
 
-        printf("Ingressos vendidos setor 1: %d\n", vendasetor1);
-        printf("Ingressos vendidos setor 2: %d\n", vendasetor2);
-        printf("Ingressos vendidos setor 3: %d\n", vendasetor3);
-        printf("Ingressos vendidos setor 4: %d\n", vendasetor4);
-        printf("Total de ingressos vendidos: %d\n", totalvendido);
-        printf("Ingressos nao vendidos: %d", n);
-        printf("\n\n");
-        printf("Total de torcedores: %d",contTorcedor);
-        printf("\n\n");
+    printf("Ingressos vendidos setor 1: %d\n", vendasetor1);
+    printf("Ingressos vendidos setor 2: %d\n", vendasetor2);
+    printf("Ingressos vendidos setor 3: %d\n", vendasetor3);
+    printf("Ingressos vendidos setor 4: %d\n", vendasetor4);
+    printf("Total de ingressos vendidos: %d\n", totalvendido);
+    printf("Ingressos nao vendidos: %d", n);
+    printf("\n\n");
+    printf("Total de torcedores: %d",contTorcedor);
+    printf("\n\n");
+
+
 
     return 0;
 }
