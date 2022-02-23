@@ -1,5 +1,5 @@
-//Programa para a venda de ingressos de um jogo de futebol, para duas torcidas, 2 setores para cada time;
-// 600 ingressos, 100 ingressos para cada setor inferior e 200 para cada setor superior
+//Programa para a venda de ingressos de um jogo de futebol em 4 setores;
+// 2000 ingressos;
 
 #include <stdio.h>
 #include <stdlib.h>
